@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
 
   def authenticate
     if request.headers['Authorization'].present?
-      @facebook_token = request.headers['Authorization']
+      @current_user = User.log_or_create(request.headers['Authorization'])
     else
       render :json => "Unauthorized", status: :unauthorized
     end

@@ -3,7 +3,7 @@ class Api::TasksController < ApplicationController
   before_action :set_task, only: [:show, :update, :destroy, :completed]
 
   def index
-    @tasks = Task.where(:facebook_token => @facebook_token)
+    @tasks = @current_user.tasks
 
     render json: @tasks
   end
@@ -13,8 +13,7 @@ class Api::TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-    @task.facebook_token = @facebook_token
+    @task = @current_user.tasks.new(task_params)
 
     if @task.save
       render json: @task, status: :created
@@ -50,7 +49,7 @@ class Api::TasksController < ApplicationController
   private
 
   def set_task
-    @task = Task.where(:facebook_token => @facebook_token).find(params[:taskId])
+    @task = @current_user.tasks.find(params[:taskId])
   end
 
   def task_params
