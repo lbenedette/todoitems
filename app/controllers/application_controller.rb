@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
     if request.headers['Authorization'].present?
       @current_user = User.log_or_create(request.headers['Authorization'])
     else
-      render :json => "Unauthorized", status: :unauthorized
+      render :json => "Unauthorized", :status => :unauthorized
     end
   end
 end

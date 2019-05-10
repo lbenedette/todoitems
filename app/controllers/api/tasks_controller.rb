@@ -3,7 +3,9 @@ class Api::TasksController < ApplicationController
   before_action :set_task, only: [:show, :update, :destroy, :completed]
 
   def index
-    @tasks = @current_user.tasks
+    @tasks = @current_user.tasks.map do |task|
+      task.serializer
+    end
 
     render json: @tasks
   end
@@ -16,7 +18,7 @@ class Api::TasksController < ApplicationController
     @task = @current_user.tasks.new(task_params)
 
     if @task.save
-      render json: @task, status: :created
+      render json: @task.serializer, status: :created
     else
       render json: @task.errors, status: :unprocessable_entity
     end
@@ -26,7 +28,7 @@ class Api::TasksController < ApplicationController
     @task.text = task_params[:text]
 
     if @task.save
-      render json: @task
+      render json: @task.serializer
     else
       render json: @task.errors, status: :unprocessable_entity
     end
@@ -36,7 +38,7 @@ class Api::TasksController < ApplicationController
     @task.completed = task_params[:completed]
 
     if @task.save
-      render json: @task
+      render json: @task.serializer
     else
       render json: @task.errors, status: :unprocessable_entity
     end

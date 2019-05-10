@@ -88,7 +88,7 @@
 							"variable": [
 								{
 									"key": "task_id",
-									"value": "2"
+									"value": "7"
 								}
 							]
 						}
@@ -160,10 +160,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"text\": \"task 3\",\n\t\"completed\": false\n}"
+							"raw": "{\n\t\"completed\": false\n}"
 						},
 						"url": {
-							"raw": "http://0.0.0.0:3000/api/tasks/:task_id",
+							"raw": "http://0.0.0.0:3000/api/tasks",
 							"protocol": "http",
 							"host": [
 								"0",
@@ -174,14 +174,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"tasks",
-								":task_id"
-							],
-							"variable": [
-								{
-									"key": "task_id",
-									"value": ""
-								}
+								"tasks"
 							]
 						}
 					},
@@ -227,7 +220,7 @@
 							"variable": [
 								{
 									"key": "task_id",
-									"value": ""
+									"value": "3"
 								}
 							]
 						}
